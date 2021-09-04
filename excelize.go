@@ -331,6 +331,9 @@ func (f *File) UpdateLinkedValue() error {
 			if err.Error() == fmt.Sprintf("sheet %s is chart sheet", trimSheetName(name)) {
 				continue
 			}
+			if err.Error() == "xml decode error: expected element type <worksheet> but have <macrosheet>" {
+				continue
+			}
 			return err
 		}
 		for indexR := range ws.SheetData.Row {
